@@ -14,13 +14,13 @@ $conexion = mysqli_connect(
     $DB_PASS, 
     $DB_NAME,
     3306 // Usamos el puerto 3306
-);
+); // <--- ¡EL PUNTO Y COMA FALTANTE ESTABA AQUÍ!
 
 // 2. Validación de conexión
 if (mysqli_connect_errno()) {
     // Si la conexión falla (por variables incorrectas o la DB apagada)
-     http_response_code(500); // Internal Server Error
-     echo json_encode(['error' => 'Error de conexión a la base de datos.']);
-     exit();
+    http_response_code(500); // Internal Server Error
+    echo json_encode(['error' => 'Error de conexión a la base de datos.']);
+    exit();
 }
 ?>
