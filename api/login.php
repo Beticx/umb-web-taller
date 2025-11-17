@@ -1,10 +1,17 @@
 <?php
-session_start();
-header("Content-Type: application/json");
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $usuario = $data['usuario'] ?? 'invitado';
-    $_SESSION['usuario'] = $usuario;
-    echo json_encode(['mensaje' => "Sesión iniciada para $usuario"]);
+session_start(); // Inicia o reanuda la sesión
+
+if (isset($_POST['usuario'])) {
+    // Simulación simple de inicio de sesión
+    $_SESSION["usuario"] = htmlspecialchars($_POST['usuario']); 
+    echo "Sesión iniciada para " . $_SESSION["usuario"];
+} elseif (isset($_GET['logout'])) {
+    // Cierra la sesión
+    session_destroy();
+    echo "Sesión cerrada.";
+} elseif (isset($_SESSION["usuario"])) {
+    echo "Sesión activa para " . $_SESSION["usuario"];
+} else {
+    echo "Sistema de sesión: Envía 'usuario' por POST para iniciar sesión.";
 }
 ?>
