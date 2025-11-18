@@ -13,7 +13,7 @@ $conexion = mysqli_connect(
     $DB_USER, 
     $DB_PASS, 
     $DB_NAME,
-    34913
+    3306
 ); // <--- ¡EL PUNTO Y COMA FALTANTE ESTABA AQUÍ!
 
 // 2. Validación de conexión
