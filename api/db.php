@@ -1,11 +1,11 @@
 <?php
-// Configuración para usar las Variables de Entorno de Railway
-// NOTA: Los nombres de las variables (KEYS) deben coincidir EXACTAMENTE
-// con las que Railway genera y las que pusiste en Render.
-$DB_HOST = getenv('MYSQLHOST'); 
+// Configuración para usar las Variables de Entorno de Render/Railway
+// Cambiamos el nombre de la variable de Host para evitar problemas de caching.
+$DB_HOST = getenv('DB_HOST_PUBLIC'); // <-- ¡LEERÁ EL HOST PÚBLICO!
 $DB_USER = getenv('MYSQLUSER'); 
 $DB_PASS = getenv('MYSQLPASSWORD'); 
 $DB_NAME = getenv('MYSQLDATABASE'); 
+$DB_PORT = getenv('MYSQLPORT'); // <-- ¡LEERÁ EL PUERTO PÚBLICO!
 
 // 1. Conexión usando las variables de entorno
 $conexion = mysqli_connect(
@@ -13,8 +13,8 @@ $conexion = mysqli_connect(
     $DB_USER, 
     $DB_PASS, 
     $DB_NAME,
-    3306
-); // <--- ¡EL PUNTO Y COMA FALTANTE ESTABA AQUÍ!
+    $DB_PORT // Usamos la variable de puerto
+);
 
 // 2. Validación de conexión
 if (mysqli_connect_errno()) {
