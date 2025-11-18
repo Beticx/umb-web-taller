@@ -1,11 +1,11 @@
 <?php
-// Configuración para usar las Variables de Entorno de Render/Railway
-// Cambiamos el nombre de la variable de Host para evitar problemas de caching.
-$DB_HOST = getenv('DB_HOST_PUBLIC'); // <-- ¡LEERÁ EL HOST PÚBLICO!
+// Configuración para usar las Variables de Entorno de Render
+// Usamos nombres de variables únicos (DB_HOST_PUBLIC) para evitar el caching del host interno.
+$DB_HOST = getenv('DB_HOST_PUBLIC'); 
 $DB_USER = getenv('MYSQLUSER'); 
 $DB_PASS = getenv('MYSQLPASSWORD'); 
 $DB_NAME = getenv('MYSQLDATABASE'); 
-$DB_PORT = getenv('MYSQLPORT'); // <-- ¡LEERÁ EL PUERTO PÚBLICO!
+$DB_PORT = getenv('MYSQLPORT'); // Lee el puerto público
 
 // 1. Conexión usando las variables de entorno
 $conexion = mysqli_connect(
